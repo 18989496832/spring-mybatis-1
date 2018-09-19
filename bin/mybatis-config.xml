@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 外部资源文件导入 -->
+	<properties resource="dbconfig.propertis"></properties>
+	<!-- 数据库字段驼峰映射规则 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="false"/>
+	</settings>
+	<!-- 实体别名 -->
+	<typeAliases>
+		<!-- <typeAlias alias="emp" type="com.kcy.mybatis.bean.Employee"/> -->
+		<package name="com.kcy.mybatis.bean"/>
+	</typeAliases>
+	<!-- 多环境切换 -->
+	<environments default="test">
+		<environment id="test">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 多数据库厂商支持 -->
+	<databaseIdProvider type="DB_VENDOR">
+		<property name="MySql"  value="mysql"/>
+		<property name="Oracle" value="oracle"/>
+		<property name="SQL Server" value="sqlserver"/>
+	</databaseIdProvider>
+	<!-- sql映射文件注册 -->
+	<mappers>
+		<!-- 
+		<mapper resource="EmployeeMapper.xml" />
+		<mapper class="com.kcy.mybatis.Dao.EmployeeMapperAnnotation"/>
+		 -->
+		<package name="com.kcy.mybatis.Dao"/>
+	</mappers>
+</configuration>

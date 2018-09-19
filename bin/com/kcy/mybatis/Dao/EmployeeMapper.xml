@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kcy.mybatis.Dao.EmployeeMapper">
+<!-- 
+namespace：命名空间,使用接口全路径：com.kcy.mybatis.Dao.EmployeeMapper
+id:selectEmployee唯一标识，Id使用接口的方法名getEmployeeById
+ -->
+	<select id="getEmployeeById" resultType="com.kcy.mybatis.bean.Employee">
+		select id,name,age,email as e_mail from tbl_employee where id = #{id}
+	</select>
+	<select id="getEmployeeById" resultType="com.kcy.mybatis.bean.Employee"
+	 	databaseId="mysql">
+		select id,name,age,email as e_mail from tbl_employee where id = #{id}
+	</select>
+	<select id="getEmployeeById" resultType="com.kcy.mybatis.bean.Employee"
+	 	databaseId="oracle">
+		select id,name,age,email as e_mail from tbl_employee where id = #{id}
+	</select>
+</mapper>
